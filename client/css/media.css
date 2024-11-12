@@ -1,0 +1,14 @@
+@media (max-width: 768px) {
+    /* .container {
+        width: 50%; /* Occupe toute la largeur disponible */
+        /* max-width: 50%; Empêche l'élément de dépasser la largeur maximale de son conteneur parent */
+        /* Ajoutez d'autres styles au besoin */
+      
+      .sidebar {
+        display: none; 
+      }
+      .main-content {
+        margin: 0 auto; 
+        width: 90% auto; 
+      }
+}

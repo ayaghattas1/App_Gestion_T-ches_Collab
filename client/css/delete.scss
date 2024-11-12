@@ -1,0 +1,129 @@
+
+// Display a cross with CSS only.
+//
+// $size  : px or em
+// $color : color
+// $thickness : px
+@mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    position: relative;
+    width: $size;
+    height: $size;
+  
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: ($size - $thickness) / 2;
+      left: 0;
+      right: 0;
+      height: $thickness;
+      background: $color;
+      border-radius: $thickness;
+    }
+  
+    &:before {
+      transform: rotate(45deg);
+    }
+  
+    &:after {
+      transform: rotate(-45deg);
+    }
+  
+    span {
+      display: block;
+    }
+  
+  }
+  //add column
+
+  .columns-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); // This creates equal-width columns
+    gap: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0.1, 0.1);
+  }
+  .new-column-button-container {
+    grid-column: span 1; // Ensures the button only takes up one column width
+    
+  }
+  
+   //task details
+  .modal {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-30%, -20%);
+    background: white;
+    padding: 10px;
+    z-index: 1000;
+    border: 1px solid grey;
+    border-radius: 25px;
+  }
+  
+  // Example 1.
+  .btn-close {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: blue;
+    border-radius: 30%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 150ms;
+    
+    .icon-cross {
+      @include cross(15px, #fff, 2px);   
+    }
+    
+    &:hover,
+    &:focus {
+      transform: rotateZ(90deg);
+      background: hsl(216, 100, 40);
+    }
+  
+  }
+  
+  // Example 2.
+  .cross-stand-alone {
+    @include cross(40px, #000, 4px);  
+  }
+  
+  
+  // Example 3.
+  .cross-1px {
+    @include cross(80px, #000);  
+  }
+  
+  
+  // Demo styles.
+  
+  body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: flex-start;
+    height: 100vh;
+  }
+  
+  
+  // For screen readers.
+  .visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+  }
+  
